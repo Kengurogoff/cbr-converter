@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>{{ form_label(converterForm) }}</h1>
+
+                {{ form_start(converterForm) }}
+                    {{ form_row(converterForm.amount, {'full_name':'amount'}) }}
+                    {{ form_row(converterForm.from, {'full_name':'from'}) }}
+                    {{ form_row(converterForm.to, {'full_name':'to'}) }}
+                {{ form_end(converterForm) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
