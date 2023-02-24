@@ -11,8 +11,30 @@
                     {{ form_row(converterForm.from, {'full_name':'from'}) }}
                     {{ form_row(converterForm.to, {'full_name':'to'}) }}
                 {{ form_end(converterForm) }}
+
+                <p id="converter_result" class="text-center ">{{ result|e }}</p>
             </div>
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            let $form = $('form[name="converter"]');
+            let $result = $('#converter_result')
+
+            $form.on('change', function () {
+                $.ajax({
+                    url: $form.attr('action'),
+                    type: $form.attr('method'),
+                    data: $form.serialize(),
+                    success: function (response) {
+                        $result.html(response);
+                    }
+                });
+            })
+        });
+    </script>
 {% endblock %}
